@@ -11,15 +11,15 @@ class Csv extends ArrayObject {
 		$firstline = array_shift($lines);
 		$fields = str_getcsv($firstline, $delimiter, $enclosure);
 		foreach ($lines as $line){
-			$line = str_getcsv($line, $delimiter, $enclosure);
+			$line_array = str_getcsv($line, $delimiter, $enclosure);
 				
-			$combined = @array_combine($fields, $line);
+			$combined = @array_combine($fields, $line_array);
 				
 			if($combined === FALSE) {
 				$lastError = error_get_last();
 				throw new \ErrorException($lastError['message'] .
-						"\nkeys: " . print_r($fields, true) .
-						"values: " . print_r($line, true),
+						"\nkeys: " . $firstline .
+						"values: " . $line,
 						$lastError['type'], 1, $lastError['file'], $lastError['line']);
 			}
 				
