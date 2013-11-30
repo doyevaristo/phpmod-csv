@@ -12,7 +12,18 @@ class Csv extends ArrayObject {
 		$fields = str_getcsv($firstline, $delimiter, $enclosure);
 		foreach ($lines as $line){
 			$line = str_getcsv($line, $delimiter, $enclosure);
-			$this->append(array_combine($fields, $line));
+				
+			$combined = @array_combine($fields, $line);
+				
+			if($combined === FALSE) {
+				$lastError = error_get_last();
+				throw new \ErrorException($lastError['message'] .
+						"\nkeys: " . print_r($fields, true) .
+						"values: " . print_r($line, true),
+						$lastError['type'], 1, $lastError['file'], $lastError['line']);
+			}
+				
+			$this->append($combined);
 		}
 	}
 

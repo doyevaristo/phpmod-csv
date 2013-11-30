@@ -20,6 +20,13 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals($expected, $csv->toPrimitiveArray());
 
+		try {
+			$csv = new Csv("name,age\nhassan");
+			$this->fail("should catch error");
+		} catch (\ErrorException $e) {
+				
+		}
+
 	}
 
 }
