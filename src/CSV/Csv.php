@@ -11,10 +11,13 @@ class Csv extends ArrayObject {
 		$firstline = array_shift($lines);
 		$fields = str_getcsv($firstline, $delimiter, $enclosure);
 		foreach ($lines as $line){
+				
+			if(strlen($line) == 0) continue;
+				
 			$line_array = str_getcsv($line, $delimiter, $enclosure);
-				
+
 			if(empty($line_array)) continue;
-				
+
 			$combined = @array_combine($fields, $line_array);
 
 			if($combined === FALSE) {
