@@ -24,7 +24,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase
 			$csv = new Csv("name,age\nhassan");
 			$this->fail("should catch error");
 		} catch (\ErrorException $e) {
-				
+
 		}
 
 	}
