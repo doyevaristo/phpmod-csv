@@ -1,3 +1,5 @@
+This documentation is valid for only version 0.1
+
 EasyCSV
 =======
 
